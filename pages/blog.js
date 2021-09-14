@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../components/container";
+import Container from "../components/Container";
 import Head from "next/head";
 import { Text, useColorMode, Heading, Flex, Stack } from "@chakra-ui/react";
 
@@ -31,9 +31,7 @@ function Blog() {
             maxWidth="700px"
           >
             <Heading mb={2}>Hello World</Heading>
-            <Text color={colorSecondary[colorMode]}>
-              This would be a blog.
-            </Text>
+            <Text color={colorSecondary[colorMode]}>This would be a blog.</Text>
           </Flex>
         </Stack>
       </Container>

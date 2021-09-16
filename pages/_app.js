@@ -1,10 +1,12 @@
 import { ChakraProvider, ColorModeProvider, useColorMode } from "@chakra-ui/react";
 import customTheme from "../styles/theme";
 import { Global, css } from "@emotion/react";
+import UserState from "../context/userState";
+
 
 const GlobalStyle = ({children}) => {
   const {colorMode} = useColorMode()
-
+  
   return (
     <>
       <Global
@@ -34,8 +36,9 @@ const GlobalStyle = ({children}) => {
   )
 }
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return (
+    <UserState>
     <ChakraProvider resetCSS theme={customTheme}>
       <ColorModeProvider
       options={{
@@ -47,8 +50,8 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
         </GlobalStyle>
       </ColorModeProvider>
-
     </ChakraProvider>
+    </UserState>
   );
 }
 

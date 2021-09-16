@@ -1,86 +1,104 @@
-import React from "react"
-import {
-    useColorMode, 
-    Button, 
-    Flex,
-    Box
-} from '@chakra-ui/react'
-import NextLink from 'next/link'
-import styled from '@emotion/styled'
-import DarkModeSwitch from './DarkModeSwitch'
+import React from "react";
+import { useColorMode, Button, Flex, Box } from "@chakra-ui/react";
+import NextLink from "next/link";
+import styled from "@emotion/styled";
+import DarkModeSwitch from "./DarkModeSwitch";
 
+const Container = ({ children }) => {
+    
+  const { colorMode } = useColorMode();
 
-const Container = ( { children }) => {
+  const bgColor = {
+    light: "white",
+    dark: "#171717",
+  };
 
-    const {colorMode} = useColorMode();
+  const navHoverBg = {
+    light: "gray.300",
+    dark: "whiteAlpha.300",
+  };
 
-    const bgColor = {
-        light: 'white',
-        dark: '#171717'
-    } 
+  const color = {
+    light: "black",
+    dark: "white",
+  };
 
-    const navHoverBg = {
-        light: 'gray.600',
-        dark: 'gray.300'
-    }
-
-    const color = {
-        light: 'black',
-        dark: 'white'
-    }
-
-    const StickyNav = styled(Flex)`
+  const StickyNav = styled(Flex)`
     position: sticky;
     z-index: 10;
     top: 0;
     backdrop-filter: blur(20px);
     transition: height .5s, line-height: .5s;
-    `
+    `;
 
-    return (
-        <>
-            <StickyNav
-                flexDirection='row'
-                justifyContent='space-between'
-                alignItems='center'
-                maxWidth='800px'
-                minWidth='350px'
-                width='100%'
-                // bg={bgColor[colorMode]}
-                as='nav'
-                px={[2,6,6]}
-                py={2}
-                mt={8}
-                mb={[0,0,8]}
-                mx='auto'
+  return (
+    <>
+      <StickyNav
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        maxWidth="800px"
+        minWidth="350px"
+        width="100%"
+        as="nav"
+        px={[2, 6, 6]}
+        py={2}
+        mt={8}
+        mb={[0, 0, 8]}
+        mx="auto"
+      >
+        <Box>
+          <NextLink href="/" passHref>
+            <Button
+              as="a"
+              variant="solid"
+              p={[1, 2, 4]}
+              color={color[colorMode]}
+              _hover={{ backgroundColor: navHoverBg[colorMode] }}
             >
-                <Box>
-                    <NextLink href='/' passHref>
-                        <Button as='a' variant='ghost' p={[1,2,4]} _hover={{backgroundColor: navHoverBg[colorMode]}}>
-                            Home
-                        </Button>
-                    </NextLink>
-                    <NextLink href='/blog' passHref>
-                        <Button as='a' variant='ghost' p={[1,2,4]} _hover={{backgroundColor: navHoverBg[colorMode]}}>
-                            Blog
-                        </Button>
-                    </NextLink>
-                </Box>
-                <DarkModeSwitch/>
-            </StickyNav>
-            <Flex
-                as='main'
-                justifyContent='center'
-                flexDirection='column'
-                bg={bgColor[colorMode]}
-                color={color[colorMode]}
-                px={[0,4,4]}
-                mt={[4,8,8]}
+              Home
+            </Button>
+          </NextLink>
+          <NextLink href="/blog" passHref>
+            <Button
+              as="a"
+              variant="solid"
+              p={[1, 2, 4]}
+              ml={2}
+              color={color[colorMode]}
+              _hover={{ backgroundColor: navHoverBg[colorMode] }}
             >
-                {children}
-            </Flex>
-        </>
-    )
-}
+              Blog
+            </Button>
+          </NextLink>
+          <NextLink href="/quote" passHref>
+            <Button
+              as="a"
+              variant="solid"
+              p={[1, 2, 4]}
+              ml={2}
+              color={color[colorMode]}
+              _hover={{ backgroundColor: navHoverBg[colorMode] }}
+            >
+              Chuck
+            </Button>
+          </NextLink>
+        </Box>
+        <DarkModeSwitch />
+      </StickyNav>
+      <Flex
+        as="main"
+        justifyContent="center"
+        flexDirection="column"
+        bg={bgColor[colorMode]}
+        color={color[colorMode]}
+        px={[0, 4, 4]}
+        mt={[4, 8, 8]}
+      >
+        {children}
+      </Flex>
+    </>
+  );
+};
 
-export default Container
+export default Container;

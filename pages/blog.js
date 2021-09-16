@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../components/Container";
 import Head from "next/head";
 import { Text, useColorMode, Heading, Flex, Stack } from "@chakra-ui/react";
+import UserContext from "../context/userContext";
 
-function Blog() {
+const Blog = () => {
   const { colorMode } = useColorMode();
-  const colorSecondary = {
-    light: "gray.700",
-    dark: "gray.400",
-  };
+  const { colorSecondary } = useContext(UserContext);
+
   return (
     <>
       <Container>
@@ -31,12 +30,13 @@ function Blog() {
             maxWidth="700px"
           >
             <Heading mb={2}>Hello World</Heading>
+
             <Text color={colorSecondary[colorMode]}>This would be a blog.</Text>
           </Flex>
         </Stack>
       </Container>
     </>
   );
-}
+};
 
 export default Blog;
